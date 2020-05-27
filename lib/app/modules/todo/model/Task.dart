@@ -1,5 +1,5 @@
 
-import 'package:todo_app/app/modules/todo/interfaces/model_interface.dart';
+import 'package:todo_app/app/interfaces/model_interface.dart';
 import 'package:todo_app/app/modules/todo/repository/task_repository.dart';
 
 class Task implements ModelInterface<Task> {

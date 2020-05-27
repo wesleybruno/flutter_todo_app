@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/app/data/shared_preferences.dart';
-import 'package:todo_app/app/modules/todo/interfaces/repository_interface.dart';
+import 'package:todo_app/app/interfaces/repository_interface.dart';
+
 import 'package:todo_app/app/modules/todo/model/Task.dart';
 
 class TaskRepository implements RepositoryInterface<Task> {
