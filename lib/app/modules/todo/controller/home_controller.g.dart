@@ -47,13 +47,6 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return _$getListAsyncAction.run(() => super.getList());
   }
 
-  final _$reloadTaskAsyncAction = AsyncAction('_HomeControllerBase.reloadTask');
-
-  @override
-  Future reloadTask() {
-    return _$reloadTaskAsyncAction.run(() => super.reloadTask());
-  }
-
   final _$_HomeControllerBaseActionController =
       ActionController(name: '_HomeControllerBase');
 

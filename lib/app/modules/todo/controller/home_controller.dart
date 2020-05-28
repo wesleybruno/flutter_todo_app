@@ -7,6 +7,11 @@ class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
   final TaskRepository repository;
+  
+  _HomeControllerBase(this.repository) {
+    getList();
+  }
+
   @observable
   List<Task> listTask = [];
 
@@ -21,12 +26,4 @@ abstract class _HomeControllerBase with Store {
   @action
   setQuantidadeTasks(value) => quantidadeTasks = value;
 
-  @action
-  reloadTask() async{
-    listTask = await repository.listAll();
-  }
-
-  _HomeControllerBase(this.repository) {
-    getList();
-  }
 }

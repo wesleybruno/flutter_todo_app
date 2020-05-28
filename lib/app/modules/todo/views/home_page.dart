@@ -24,28 +24,16 @@ class _HomePageState extends State<HomePage> {
             builder: (_) => ListView.builder(
               itemCount: homeController.listTask.length,
               itemBuilder: (BuildContext ctxt, int index) {
-                return GestureDetector(
+                return TaskItem(
                   onTap: () {
                     Modular.to.pushNamed('/edit-task');
                   },
-                  child: TaskItem(
-                    titulo: homeController.listTask[index].titulo,
-                    descricao: homeController.listTask[index].descricao,
-                  ),
+                  titulo: homeController.listTask[index].titulo,
+                  descricao: homeController.listTask[index].descricao,
                 );
               },
             ),
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2,
-            left: MediaQuery.of(context).size.width / 2,
-            child: IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () {
-                homeController.reloadTask();
-              },
-            ),
-          )
         ],
       ),
       floatingActionButton: FloatingActionButton(

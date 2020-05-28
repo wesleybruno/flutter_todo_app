@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:todo_app/app/helpers/constants.dart';
 import 'package:todo_app/app/modules/todo/controller/task_controller.dart';
 import 'package:todo_app/app/modules/todo/model/Task.dart';
@@ -46,9 +45,10 @@ class _NewTaskPageState extends State<NewTaskPage> {
       appBar: _getAppBar(),
       backgroundColor: Contants.BACKGROUND_COLOR,
       body: FormTask(
-          taskController: _taskController,
-          pageViewController: _pageViewController,
-          onSubmit: saveTask),
+        taskController: _taskController,
+        pageViewController: _pageViewController,
+        onSubmit: saveTask,
+      ),
       floatingActionButton: _getFloatingActionButton(
         _taskController,
         nextPage,

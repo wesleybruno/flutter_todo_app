@@ -11,3 +11,8 @@ A basic app
 ## Developer
 
 [Wesley Oliveira](https://github.com/wesleybruno)
+
+## Commands
+
+* flutter pub run build_runner build --delete-conflicting-outputs
+* flutter pub run build_runner watch

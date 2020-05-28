@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:todo_app/app/data/shared_preferences.dart';
 import 'package:todo_app/app/interfaces/repository_interface.dart';
 
@@ -30,8 +29,6 @@ class TaskRepository implements RepositoryInterface<Task> {
   Future<List<Task>> listAll() async {
     var sharedPref = new SharedPref();
     var listShared = await sharedPref.read("todo_list");
-
-    debugPrint("listall");
 
     List<Task> list = List();
     list.add(Task.fromJson(listShared));
