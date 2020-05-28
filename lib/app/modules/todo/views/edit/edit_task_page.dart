@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/app/helpers/constants.dart';
+import '../../../../helpers/constants.dart';
 
 class EditTaskPage extends StatefulWidget {
   @override
@@ -12,10 +12,10 @@ class _EditTaskPageState extends State<EditTaskPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("EditTask"),
-        backgroundColor: Contants.BACKGROUND_COLOR,
+        backgroundColor: Contants.backgroudColor,
         elevation: 0,
       ),
-      backgroundColor: Contants.BACKGROUND_COLOR,
+      backgroundColor: Contants.backgroudColor,
       body: Center(
         child: Container(
           child: Text("Edit Task Page"),

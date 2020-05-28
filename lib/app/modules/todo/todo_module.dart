@@ -1,10 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'controller/home_controller.dart';
 import 'repository/task_repository.dart';
-import 'views/edit_task_page.dart';
-import 'views/home_page.dart';
-import 'views/new_task_page.dart';
+import 'views/edit/edit_task_page.dart';
+import 'views/home/home_controller.dart';
+import 'views/home/home_page.dart';
+import 'views/new/new_task_page.dart';
 
 class TodoModule extends ChildModule {
   @override

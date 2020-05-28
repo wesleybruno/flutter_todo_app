@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:todo_app/app/helpers/constants.dart';
-import 'package:todo_app/app/modules/todo/controller/task_controller.dart';
-import 'package:todo_app/app/modules/todo/model/Task.dart';
+import '../../../../helpers/constants.dart';
+import '../../model/Task.dart';
+import './task_controller.dart';
+
 
 import 'widgets/form_task.dart';
 
@@ -12,8 +13,8 @@ class NewTaskPage extends StatefulWidget {
 }
 
 class _NewTaskPageState extends State<NewTaskPage> {
-  NewTaskController _taskController = NewTaskController();
-  PageController _pageViewController = PageController(initialPage: 0);
+  final NewTaskController _taskController = NewTaskController();
+  final PageController _pageViewController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +28,6 @@ class _NewTaskPageState extends State<NewTaskPage> {
       _taskController.initPageFalse();
     }
 
-    @override
-    void dispose() {
-      _pageViewController.dispose();
-      super.dispose();
-    }
-
     void saveTask(String titulo, String descricao) {
       _taskController.initPageTrue();
 
@@ -43,7 +38,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
 
     return Scaffold(
       appBar: _getAppBar(),
-      backgroundColor: Contants.BACKGROUND_COLOR,
+      backgroundColor: Contants.backgroudColor,
       body: FormTask(
         taskController: _taskController,
         pageViewController: _pageViewController,
@@ -66,7 +61,7 @@ Widget _getAppBar() {
         color: Colors.black,
       ),
     ),
-    backgroundColor: Contants.BACKGROUND_COLOR,
+    backgroundColor: Contants.backgroudColor,
     elevation: 0,
   );
 }

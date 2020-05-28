@@ -8,8 +8,8 @@ abstract class _NewTaskControllerBase with Store {
   bool isInitPage = true;
 
   @action
-  initPageFalse() => isInitPage = false;
+  bool initPageFalse() => isInitPage = false;
 
   @action
-  initPageTrue() => isInitPage = true;
+  bool initPageTrue() => isInitPage = true;
 }

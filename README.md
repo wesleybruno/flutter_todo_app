@@ -7,6 +7,7 @@ A basic app
 * Mobx
 * Modular
 * Shared Preferences
+* Dart Analysis
 
 ## Developer
 

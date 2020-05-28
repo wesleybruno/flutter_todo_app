@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:todo_app/app/modules/todo/controller/task_controller.dart';
+import '../task_controller.dart';
 
 class FormTask extends StatelessWidget {
   final PageController pageViewController;

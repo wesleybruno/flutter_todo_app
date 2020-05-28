@@ -28,7 +28,7 @@ mixin _$NewTaskController on _NewTaskControllerBase, Store {
       ActionController(name: '_NewTaskControllerBase');
 
   @override
-  dynamic initPageFalse() {
+  bool initPageFalse() {
     final _$actionInfo = _$_NewTaskControllerBaseActionController.startAction(
         name: '_NewTaskControllerBase.initPageFalse');
     try {
@@ -39,7 +39,7 @@ mixin _$NewTaskController on _NewTaskControllerBase, Store {
   }
 
   @override
-  dynamic initPageTrue() {
+  bool initPageTrue() {
     final _$actionInfo = _$_NewTaskControllerBaseActionController.startAction(
         name: '_NewTaskControllerBase.initPageTrue');
     try {

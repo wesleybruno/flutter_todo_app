@@ -1,6 +1,5 @@
-
-import 'package:todo_app/app/interfaces/model_interface.dart';
-import 'package:todo_app/app/modules/todo/repository/task_repository.dart';
+import '../../../interfaces/model_interface.dart';
+import '../repository/task_repository.dart';
 
 class Task implements ModelInterface<Task> {
   String _titulo;
@@ -33,13 +32,13 @@ class Task implements ModelInterface<Task> {
 
   @override
   Future<List<Task>> listAll() async {
-    var repository = new TaskRepository();
+    var repository = TaskRepository();
     return await repository.listAll();
   }
 
   @override
   Future<Task> insert() async{
-    var repository = new TaskRepository();
+    var repository = TaskRepository();
     await repository.insert(this);
     return this;
   }

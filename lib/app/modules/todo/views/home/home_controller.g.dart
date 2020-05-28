@@ -40,27 +40,6 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
-  final _$getListAsyncAction = AsyncAction('_HomeControllerBase.getList');
-
-  @override
-  Future getList() {
-    return _$getListAsyncAction.run(() => super.getList());
-  }
-
-  final _$_HomeControllerBaseActionController =
-      ActionController(name: '_HomeControllerBase');
-
-  @override
-  dynamic setQuantidadeTasks(dynamic value) {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.setQuantidadeTasks');
-    try {
-      return super.setQuantidadeTasks(value);
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''
