@@ -1,29 +1,36 @@
-import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../interfaces/local_storage_interface.dart';
 
-class SharedPref implements LocalStorageInterface {
-  @override
+class SharedPref {
   Future read(String key) async {
     final prefs = await SharedPreferences.getInstance();
-    return json.decode(prefs.getString(key));
+    return prefs.getString(key);
   }
 
-  @override
   void remove(String key) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.remove(key);
   }
 
-  @override
-  void save(dynamic value) async {
+  void save(String key, dynamic value) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString(value.toString(), json.encode(value));
-  }
+    if (value is String) {
+      prefs.setString(key, value);
+    }
 
-  @override
-  void update(String key, dynamic value) async {
-    final prefs = await SharedPreferences.getInstance();
-    return json.decode(prefs.getString(key));
+    if (value is int) {
+      prefs.setInt(key, value);
+    }
+
+    if (value is bool) {
+      prefs.setBool(key, value);
+    }
+
+    if (value is double) {
+      prefs.setDouble(key, value);
+    }
+
+    if (value is List<String>) {
+      prefs.setStringList(key, value);
+    }
   }
 }

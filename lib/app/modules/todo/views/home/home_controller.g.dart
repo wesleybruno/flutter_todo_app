@@ -24,27 +24,18 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
-  final _$quantidadeTasksAtom =
-      Atom(name: '_HomeControllerBase.quantidadeTasks');
+  final _$getTaskListAsyncAction =
+      AsyncAction('_HomeControllerBase.getTaskList');
 
   @override
-  int get quantidadeTasks {
-    _$quantidadeTasksAtom.reportRead();
-    return super.quantidadeTasks;
-  }
-
-  @override
-  set quantidadeTasks(int value) {
-    _$quantidadeTasksAtom.reportWrite(value, super.quantidadeTasks, () {
-      super.quantidadeTasks = value;
-    });
+  Future<void> getTaskList() {
+    return _$getTaskListAsyncAction.run(() => super.getTaskList());
   }
 
   @override
   String toString() {
     return '''
-listTask: ${listTask},
-quantidadeTasks: ${quantidadeTasks}
+listTask: ${listTask}
     ''';
   }
 }

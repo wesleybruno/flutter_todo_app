@@ -1,26 +1,37 @@
 import 'package:mobx/mobx.dart';
 import '../../model/Task.dart';
-import '../../repository/task_repository.dart';
 part 'home_controller.g.dart';
 
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
-  final TaskRepository repository;
-  
-  _HomeControllerBase(this.repository) {
-    listAll;
+  Task _taskModel;
+
+  _HomeControllerBase(Task task) {
+    _taskModel = task;
+    getTaskList();
   }
 
   @observable
   List<Task> listTask = [];
 
-  @observable
-  int quantidadeTasks = 0;
+  @action
+  Future<void> getTaskList() async {
+    listTask = await _taskModel.listAll();
+  }
 
-  Future<List<Task>> get listAll async => listTask = await repository.listAll();
-  
-  set totalTasks(int value) => quantidadeTasks = value;
-  int get totalTasks => quantidadeTasks;
+  // _HomeControllerBase(this.repository) {
+  //   listAll;
+  // }
 
+  // @observable
+  // int quantidadeTasks = 0;
+
+  // @action
+  // getListTasks() {}
+
+  // Future<List<Task>> get listAll async => listTask = await repository.listAll();
+
+  // set totalTasks(int value) => quantidadeTasks = value;
+  // int get totalTasks => quantidadeTasks;
 }

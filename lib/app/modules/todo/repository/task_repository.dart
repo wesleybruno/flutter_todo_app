@@ -6,7 +6,7 @@ class TaskRepository implements RepositoryInterface<Task> {
   List<Task> listTask = [];
 
   SqFlite sqflite;
-  TaskRepository(){
+  TaskRepository() {
     sqflite = SqFlite();
   }
 
@@ -23,6 +23,11 @@ class TaskRepository implements RepositoryInterface<Task> {
 
   @override
   Future<List<Task>> listAll() async {
-    sqflite.readAll();
+    var listTask = [
+      Task(descricao: "descricao", titulo: "titulo", isExecutada: false),
+      Task(descricao: "descricao33", titulo: "titulo", isExecutada: false)
+    ];
+    return listTask;
+    //sqflite.readAll();
   }
 }
