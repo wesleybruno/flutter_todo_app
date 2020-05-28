@@ -1,26 +1,65 @@
+import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
+
 class SqFlite {
-
-  Future read(String key) {
-    // TODO: implement read
-    throw UnimplementedError();
+  Future<String> getPath() async {
+    var documentsDirectory = await getApplicationDocumentsDirectory();
+    var path = "${documentsDirectory.path}/demo.db";
+    return path;
   }
 
-
-  void remove(String key) {
-    // TODO: implement remove
+  Future<Database> getConnection() async {
+    var path = await getPath();
+    return openDatabase(
+      path,
+      version: 1,
+      onUpgrade: (db, version, info) async {},
+      onCreate: (db, version) {
+        db.execute(
+          "CREATE TABLE Task (id integer primary key autoincrement, titulo TEXT, descricao TEXT, isExecutada BOOL)",
+        );
+      },
+    );
   }
 
+  Future read(
+    String table,
+    List<String> columns,
+    String where,
+    List<String> whereArgs,
+  ) async {
+    try {
+      var conn = await getConnection();
 
-  void save(keyue) {
-    // TODO: implement save
+      var rs = await conn.query(
+        "$table",
+        columns: columns,
+        where: where,
+        whereArgs: whereArgs,
+      );
+
+      conn.close();
+
+      return rs;
+    } catch (e) {
+      //debugPrint(e.message);
+    }
   }
 
+  Future<bool> insert(String insertString, List<String> insertValues) async {
+    try {
+      var conn = await getConnection();
 
-  void update(String key, value) {
-    // TODO: implement update
-  }
+      await conn.rawInsert(
+        insertString,
+        insertValues,
+      );
 
-  Future readAll() {
-    // TODO: implement update
+      conn.close();
+
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }

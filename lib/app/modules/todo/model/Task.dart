@@ -33,11 +33,14 @@ class Task implements ModelInterface<Task> {
   @override
   Future<List<Task>> listAll() async {
     var repository = TaskRepository();
-    return await repository.listAll();
+
+    var listDb = await repository.listAll();
+
+    return listDb;
   }
 
   @override
-  Future<Task> insert() async{
+  Future<Task> insert() async {
     var repository = TaskRepository();
     await repository.insert(this);
     return this;

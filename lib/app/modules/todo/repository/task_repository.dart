@@ -11,23 +11,46 @@ class TaskRepository implements RepositoryInterface<Task> {
   }
 
   @override
-  Future<Task> findOne(dynamic key) async {
-    var task = sqflite.read(key);
+  Future<Task> findOne(int id) async {
+    var table = "Task";
+    var columns = ["id", "titulo", "descricao", "isExecutada"];
+    var where = "id>?";
+    var whereArgs = ["$id"];
+
+    var task = sqflite.read(table, columns, where, whereArgs);
+
     return task;
   }
 
   @override
   Future<bool> insert(Task task) async {
-    sqflite.save(task);
+    var insert =
+        "insert into Task(titulo, descricao, isExecutada) values (?,?,?)";
+    var values = ["${task.titulo}", "${task.descricao}", "false"];
+
+    var response = await sqflite.insert(insert, values);
+
+    return true;
   }
 
   @override
   Future<List<Task>> listAll() async {
-    var listTask = [
-      Task(descricao: "descricao", titulo: "titulo", isExecutada: false),
-      Task(descricao: "descricao33", titulo: "titulo", isExecutada: false)
-    ];
-    return listTask;
-    //sqflite.readAll();
+    var table = "Task";
+    var columns = ["id", "titulo", "descricao", "isExecutada"];
+    var where = "id>?";
+    var whereArgs = ["0"];
+
+    var lista = await sqflite.read(table, columns, where, whereArgs);
+    List<Task> returnLit = [];
+
+    for (var item in lista) {
+      returnLit.add(Task(
+        titulo: item["titulo"],
+        descricao: item["descricao"],
+        isExecutada: item["isExecutada"].toLowerCase() == 'true',
+      ));
+    }
+
+    return returnLit;
   }
 }
