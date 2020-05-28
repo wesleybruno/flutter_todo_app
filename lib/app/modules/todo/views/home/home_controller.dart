@@ -19,19 +19,4 @@ abstract class _HomeControllerBase with Store {
   Future<void> getTaskList() async {
     listTask = await _taskModel.listAll();
   }
-
-  // _HomeControllerBase(this.repository) {
-  //   listAll;
-  // }
-
-  // @observable
-  // int quantidadeTasks = 0;
-
-  // @action
-  // getListTasks() {}
-
-  // Future<List<Task>> get listAll async => listTask = await repository.listAll();
-
-  // set totalTasks(int value) => quantidadeTasks = value;
-  // int get totalTasks => quantidadeTasks;
 }
