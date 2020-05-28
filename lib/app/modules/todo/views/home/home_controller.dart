@@ -13,10 +13,18 @@ abstract class _HomeControllerBase with Store {
   }
 
   @observable
-  List<Task> listTask = [];
+  List<Task> listTask = ObservableList<Task>();
 
   @action
   Future<void> getTaskList() async {
     listTask = await _taskModel.listAll();
+  }
+
+  Future<void> saveTask(
+      String titulo, String descricao, bool isExecutada) async {
+    var task =
+        Task(titulo: titulo, descricao: descricao, isExecutada: isExecutada);
+
+    await task.insert();
   }
 }

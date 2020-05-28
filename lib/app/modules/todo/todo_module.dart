@@ -1,16 +1,16 @@
 import 'package:flutter_modular/flutter_modular.dart';
-
 import 'model/Task.dart';
-import 'repository/task_repository.dart';
 import 'views/edit/edit_task_page.dart';
+import 'views/new/new_task_page.dart';
+import 'views/new/task_controller.dart';
 import 'views/home/home_controller.dart';
 import 'views/home/home_page.dart';
-import 'views/new/new_task_page.dart';
 
 class TodoModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => HomeController(i.get<Task>())),
+        Bind((i) => NewTaskController()),
         Bind((i) => Task()),
       ];
 

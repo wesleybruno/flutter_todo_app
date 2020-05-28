@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../helpers/constants.dart';
 import '../../model/Task.dart';
+import '../home/home_controller.dart';
 import './task_controller.dart';
-
-
 import 'widgets/form_task.dart';
 
 class NewTaskPage extends StatefulWidget {
@@ -13,7 +13,8 @@ class NewTaskPage extends StatefulWidget {
 }
 
 class _NewTaskPageState extends State<NewTaskPage> {
-  final NewTaskController _taskController = NewTaskController();
+  final HomeController homeController = Modular.get<HomeController>();
+  final NewTaskController _taskController = Modular.get<NewTaskController>();
   final PageController _pageViewController = PageController(initialPage: 0);
 
   @override
@@ -30,10 +31,8 @@ class _NewTaskPageState extends State<NewTaskPage> {
 
     void saveTask(String titulo, String descricao) {
       _taskController.initPageTrue();
-
-      var newTask =
-          Task(titulo: titulo, descricao: descricao, isExecutada: false);
-      newTask.insert();
+      _taskController.saveTask(titulo, descricao);
+      homeController.getTaskList();
     }
 
     return Scaffold(
