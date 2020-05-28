@@ -2,7 +2,7 @@
 
 A basic app
 
-## Tecnologies
+## Technologies
 
 * Mobx
 * Modular
