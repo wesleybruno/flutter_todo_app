@@ -1,4 +1,4 @@
-# Flutter todo_app
+# flutter_todo_app
 
 A basic app
 
@@ -10,4 +10,4 @@ A basic app
 
 ## Developer
 
-- [Wesley Oliveira](https://github.com/wesleybruno)
+[Wesley Oliveira](https://github.com/wesleybruno)
