@@ -8,6 +8,7 @@ A basic app
 * Modular
 * Shared Preferences
 * Dart Analysis
+* Sqflite
 
 ## Developer
 
