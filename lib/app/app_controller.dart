@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import 'core/app_model.dart';
@@ -18,8 +19,9 @@ abstract class _AppControllerBase with Store {
   bool isDark = false;
 
   @action
-  setDarkMode(bool value) {
-    _appModel.setDarkMode(value);
+  void setDarkMode(bool value) async {
+    isDark = value;
+    await _appModel.setDarkMode(value);
   }
 
   @action

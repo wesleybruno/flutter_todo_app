@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../../../app_controller.dart';
 import '../../../../helpers/constants.dart';
 import './home_controller.dart';
 
@@ -13,11 +14,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final HomeController homeController = Modular.get<HomeController>();
+  final AppController appController = Modular.get<AppController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Contants.backgroudColor,
+      appBar: _getAppBar(appController),
       body: Stack(
         children: <Widget>[
           Observer(
@@ -46,4 +49,32 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+Widget _getAppBar(appController) {
+  return AppBar(
+    iconTheme: IconThemeData(color: Colors.black),
+    title: Text(
+      "Tasks",
+      style: TextStyle(
+        color: Colors.black,
+      ),
+    ),
+    actions: <Widget>[
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Observer(builder: (_) {
+          return appController.isDark
+              ? IconButton(
+                  onPressed: () => appController.setDarkMode(false),
+                  icon: Icon(Icons.brightness_5))
+              : IconButton(
+                  onPressed: () => appController.setDarkMode(true),
+                  icon: Icon(Icons.brightness_2));
+        }),
+      )
+    ],
+    backgroundColor: Contants.backgroudColor,
+    elevation: 0,
+  );
 }

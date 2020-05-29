@@ -54,6 +54,9 @@ class _NewTaskPageState extends State<NewTaskPage> {
 
 Widget _getAppBar() {
   return AppBar(
+    iconTheme: IconThemeData(
+      color: Colors.black,
+    ),
     title: Text(
       "New Task",
       style: TextStyle(

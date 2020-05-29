@@ -16,7 +16,7 @@ class TaskItem extends StatelessWidget {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white,
+            border: Border.all(),
             borderRadius: BorderRadius.circular(20.0),
           ),
           height: 120,

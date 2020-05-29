@@ -13,6 +13,9 @@ class AppWidget extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'TodoApp List',
         theme: ThemeData(
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            foregroundColor: Colors.white,
+          ),
           primarySwatch: Colors.blue,
           brightness: appController.isDark ? Brightness.dark : Brightness.light,
         ),
