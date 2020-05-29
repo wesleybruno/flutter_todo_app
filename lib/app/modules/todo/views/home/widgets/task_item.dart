@@ -5,8 +5,15 @@ class TaskItem extends StatelessWidget {
   final String descricao;
   final Function onTap;
   final Color borderColor;
+  final bool status;
 
-  const TaskItem({this.titulo, this.descricao, this.onTap, this.borderColor});
+  const TaskItem({
+    this.titulo,
+    this.descricao,
+    this.onTap,
+    this.borderColor,
+    this.status,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +39,25 @@ class TaskItem extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    titulo,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        titulo,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        status.toString(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

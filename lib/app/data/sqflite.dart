@@ -22,7 +22,7 @@ class SqFlite {
     );
   }
 
-  Future read(
+  Future<List<Map<String, dynamic>>> read(
     String table,
     List<String> columns,
     String where,
@@ -57,6 +57,33 @@ class SqFlite {
 
       conn.close();
 
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> delete(int key, String query) async {
+    try {
+      var conn = await getConnection();
+
+      await conn.rawDelete(query, ["$key"]);
+
+      conn.close();
+
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> update(String query, List<String> values) async {
+    try {
+      var conn = await getConnection();
+
+      await conn.rawUpdate(query, values);
+
+      conn.close();
       return true;
     } catch (e) {
       return false;

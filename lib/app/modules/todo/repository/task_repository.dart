@@ -14,10 +14,12 @@ class TaskRepository implements RepositoryInterface<Task> {
   Future<Task> findOne(int id) async {
     var table = "Task";
     var columns = ["id", "titulo", "descricao", "isExecutada"];
-    var where = "id>?";
+    var where = "id=?";
     var whereArgs = ["$id"];
 
-    var task = sqflite.read(table, columns, where, whereArgs);
+    var resultSet = await sqflite.read(table, columns, where, whereArgs);
+
+    var task = Task.fromJson(resultSet[0]);
 
     return task;
   }
@@ -28,7 +30,7 @@ class TaskRepository implements RepositoryInterface<Task> {
         "insert into Task(titulo, descricao, isExecutada) values (?,?,?)";
     var values = ["${task.titulo}", "${task.descricao}", "false"];
 
-    var response = await sqflite.insert(insert, values);
+    await sqflite.insert(insert, values);
 
     return true;
   }
@@ -48,5 +50,20 @@ class TaskRepository implements RepositoryInterface<Task> {
     }
 
     return returnLit;
+  }
+
+  @override
+  Future<bool> remove(int key) async {
+    var query = "DELETE from Task where id = ?";
+
+    return await sqflite.delete(key, query);
+  }
+
+  @override
+  Future<bool> update(int key, Task task) async {
+    var query = "UPDATE Task SET isExecutada = ? where id = ?";
+    var values = ["${!task.isExecutada}", "${task.id}"];
+
+    return await sqflite.update(query, values);
   }
 }

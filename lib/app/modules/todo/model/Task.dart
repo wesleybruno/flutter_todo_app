@@ -5,9 +5,12 @@ import '../repository/task_repository.dart';
 class Task implements ModelInterface<Task> {
   RepositoryInterface repository = TaskRepository();
 
+  int _id;
   String _titulo;
   String _descricao;
   bool _isExecutada;
+
+  int get id => _id;
 
   String get descricao => _descricao;
   set descricao(String descricao) => _descricao = descricao;
@@ -22,12 +25,26 @@ class Task implements ModelInterface<Task> {
     this._isExecutada = isExecutada;
   }
 
+  Future<Task> find(int taskId) async {
+    return await repository.findOne(taskId);
+  }
+
+  Future<void> excluir(int taskId) async {
+    await repository.remove(taskId);
+  }
+
+  Future<void> finalizar(int taskId, Task task) async {
+    await repository.update(taskId, task);
+  }
+
   Task.fromJson(Map<String, dynamic> json)
       : _titulo = json['titulo'],
         _descricao = json['descricao'],
-        _isExecutada = json['isExecutada'] == true;
+        _isExecutada = json['isExecutada'] == true,
+        _id = json['id'];
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'titulo': titulo,
         'descricao': descricao,
         'isExecutada': isExecutada,
@@ -43,10 +60,5 @@ class Task implements ModelInterface<Task> {
   Future<Task> insert() async {
     await repository.insert(this);
     return this;
-  }
-
-  @override
-  String toString() {
-    return "$descricao $titulo";
   }
 }
