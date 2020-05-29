@@ -21,7 +21,7 @@ abstract class _HomeControllerBase with Store {
   }
 
   Future<void> saveTask(
-      String titulo, String descricao, bool isExecutada) async {
+      String titulo, String descricao, String isExecutada) async {
     var task =
         Task(titulo: titulo, descricao: descricao, isExecutada: isExecutada);
 

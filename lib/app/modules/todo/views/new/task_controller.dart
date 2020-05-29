@@ -19,7 +19,7 @@ abstract class _NewTaskControllerBase with Store {
   bool initPageTrue() => isInitPage = true;
 
   void saveTask(String titulo, String descricao) async {
-    var task = Task(titulo: titulo, descricao: descricao, isExecutada: false);
+    var task = Task(titulo: titulo, descricao: descricao, isExecutada: "false");
     await task.insert();
     await homeController.getTaskList();
   }

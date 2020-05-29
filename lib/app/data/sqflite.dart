@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 class SqFlite {
   Future<String> getPath() async {
     var documentsDirectory = await getApplicationDocumentsDirectory();
-    var path = "${documentsDirectory.path}/demo.db";
+    var path = "${documentsDirectory.path}/todo.db";
     return path;
   }
 
@@ -16,7 +16,7 @@ class SqFlite {
       onUpgrade: (db, version, info) async {},
       onCreate: (db, version) {
         db.execute(
-          "CREATE TABLE Task (id integer primary key autoincrement, titulo TEXT, descricao TEXT, isExecutada BOOL)",
+          "CREATE TABLE Task (id integer primary key autoincrement, titulo TEXT, descricao TEXT, isExecutada TEXT)",
         );
       },
     );
@@ -77,27 +77,16 @@ class SqFlite {
     }
   }
 
-  Future<bool> rawUpdate(String query, List<String> values) async {
-    try {
-      var conn = await getConnection();
-
-      await conn.rawUpdate(query, values);
-
-      conn.close();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  Future<bool> update(String table, Map<String, dynamic> values, String where,
-      List<String> whereArgs) async {
+  Future<bool> update(
+    String table,
+    Map<String, dynamic> values,
+    String where,
+    List<String> whereArgs,
+  ) async {
     try {
       var conn = await getConnection();
 
       await conn.update(table, values, where: where, whereArgs: whereArgs);
-
-//      await conn.rawUpdate(query, values);
 
       conn.close();
       return true;

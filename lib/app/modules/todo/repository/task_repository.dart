@@ -1,6 +1,5 @@
 import '../../../data/sqflite.dart';
 import '../../../interfaces/repository_task_interface.dart';
-
 import '../model/Task.dart';
 
 class TaskRepository implements RepositoryTaskInterface<Task> {
@@ -62,9 +61,7 @@ class TaskRepository implements RepositoryTaskInterface<Task> {
 
   @override
   Future<bool> update(Task task) async {
-    // var query = "UPDATE Task SET isExecutada = ? where id = ?";
-    // var values = ["${!task.isExecutada}", "${task.id}"];
-
+    
     var where = "id = ?";
     var whereArgs = ["${task.id}"];
 
@@ -73,9 +70,14 @@ class TaskRepository implements RepositoryTaskInterface<Task> {
 
   @override
   Future<bool> finalizar(Task task) async {
-    var query = "UPDATE Task SET isExecutada = true where id = ?";
-    var values = ["${!task.isExecutada}", "${task.id}"];
+    var table = "Task";
+    var values = {
+      "isExecutada": "true",
+    };
 
-    return await sqflite.rawUpdate(query, values);
+    var where = 'id = ?';
+    var whereArgs = ["${task.id}"];
+
+    return await sqflite.update(table, values, where, whereArgs);
   }
 }

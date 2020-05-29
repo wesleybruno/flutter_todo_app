@@ -5,7 +5,7 @@ class TaskItem extends StatelessWidget {
   final String descricao;
   final Function onTap;
   final Color borderColor;
-  final bool status;
+  final String status;
 
   const TaskItem({
     this.titulo,

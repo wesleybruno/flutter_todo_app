@@ -8,7 +8,7 @@ class Task implements ModelInterface<Task> {
   int _id;
   String _titulo;
   String _descricao;
-  bool _isExecutada;
+  String _isExecutada;
 
   int get id => _id;
 
@@ -16,10 +16,10 @@ class Task implements ModelInterface<Task> {
   set descricao(String descricao) => _descricao = descricao;
   String get titulo => _titulo;
   set titulo(String titulo) => _titulo = titulo;
-  bool get isExecutada => _isExecutada;
-  set isExecutada(bool isExecutada) => _isExecutada = _isExecutada;
+  String get isExecutada => _isExecutada;
+  set isExecutada(String isExecutada) => _isExecutada = _isExecutada;
 
-  Task({String titulo, String descricao, bool isExecutada}) {
+  Task({String titulo, String descricao, String isExecutada}) {
     this._titulo = titulo;
     this._descricao = descricao;
     this._isExecutada = isExecutada;
@@ -40,7 +40,7 @@ class Task implements ModelInterface<Task> {
   Task.fromJson(Map<String, dynamic> json)
       : _titulo = json['titulo'],
         _descricao = json['descricao'],
-        _isExecutada = json['isExecutada'] == true,
+        _isExecutada = json['isExecutada'],
         _id = json['id'];
 
   Map<String, dynamic> toJson() {
