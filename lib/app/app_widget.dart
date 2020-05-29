@@ -12,7 +12,7 @@ class AppWidget extends StatelessWidget {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'TodoApp List',
-        theme: appController.themeApp,
+        theme: appController.themeStore.themeApp,
         navigatorKey: Modular.navigatorKey,
         initialRoute: "/",
         onGenerateRoute: Modular.generateRoute,

@@ -32,12 +32,15 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             color: Theme.of(context).accentColor,
             icon: Icon(
-              appController.isDark ? Icons.brightness_5 : Icons.brightness_2,
+              appController.themeStore.isDark
+                  ? Icons.brightness_5
+                  : Icons.brightness_2,
             ),
             onPressed: () {
-              appController.changeTheme(appController.isDark
-                  ? Constants.THEME_DARK
-                  : Constants.THEME_LIGHT);
+              appController.themeStore.changeTheme(
+                  appController.themeStore.isDark
+                      ? Constants.THEME_DARK
+                      : Constants.THEME_LIGHT);
             },
           ),
         ],
@@ -53,8 +56,9 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Modular.to.pushNamed('/edit-task');
                   },
-                  borderColor:
-                      appController.isDark ? Colors.white : Colors.black,
+                  borderColor: appController.themeStore.isDark
+                      ? Colors.white
+                      : Colors.black,
                   titulo: homeController.listTask[index].titulo,
                   descricao: homeController.listTask[index].descricao,
                 );
