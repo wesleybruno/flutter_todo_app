@@ -37,7 +37,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
 
     return Scaffold(
       appBar: _getAppBar(),
-      backgroundColor: Contants.backgroudColor,
+      backgroundColor: Constants.backgroudColor,
       body: FormTask(
         taskController: _taskController,
         pageViewController: _pageViewController,
@@ -63,7 +63,7 @@ Widget _getAppBar() {
         color: Colors.black,
       ),
     ),
-    backgroundColor: Contants.backgroudColor,
+    backgroundColor: Constants.backgroudColor,
     elevation: 0,
   );
 }

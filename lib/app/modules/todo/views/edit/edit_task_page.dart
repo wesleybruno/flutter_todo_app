@@ -20,10 +20,10 @@ class _EditTaskPageState extends State<EditTaskPage> {
             color: Colors.black,
           ),
         ),
-        backgroundColor: Contants.backgroudColor,
+        backgroundColor: Constants.backgroudColor,
         elevation: 0,
       ),
-      backgroundColor: Contants.backgroudColor,
+      backgroundColor: Constants.backgroudColor,
       body: Center(
         child: Container(
           child: Text("Edit Task Page"),

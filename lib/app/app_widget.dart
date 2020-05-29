@@ -12,13 +12,7 @@ class AppWidget extends StatelessWidget {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'TodoApp List',
-        theme: ThemeData(
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-            foregroundColor: Colors.white,
-          ),
-          primarySwatch: Colors.blue,
-          brightness: appController.isDark ? Brightness.dark : Brightness.light,
-        ),
+        theme: appController.themeApp,
         navigatorKey: Modular.navigatorKey,
         initialRoute: "/",
         onGenerateRoute: Modular.generateRoute,

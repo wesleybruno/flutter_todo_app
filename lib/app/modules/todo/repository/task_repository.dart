@@ -44,11 +44,7 @@ class TaskRepository implements RepositoryInterface<Task> {
     List<Task> returnLit = [];
 
     for (var item in lista) {
-      returnLit.add(Task(
-        titulo: item["titulo"],
-        descricao: item["descricao"],
-        isExecutada: item["isExecutada"].toLowerCase() == 'true',
-      ));
+      returnLit.add(Task.fromJson(item));
     }
 
     return returnLit;

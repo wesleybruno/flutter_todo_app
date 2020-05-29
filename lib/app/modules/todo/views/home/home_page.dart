@@ -19,8 +19,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Contants.backgroudColor,
-      appBar: _getAppBar(appController),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          "Tasks",
+          style: TextStyle(
+              //color: Colors.black,
+              ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            color: Theme.of(context).accentColor,
+            icon: Icon(
+              appController.isDark ? Icons.brightness_5 : Icons.brightness_2,
+            ),
+            onPressed: () {
+              appController.changeTheme(appController.isDark
+                  ? Constants.THEME_DARK
+                  : Constants.THEME_LIGHT);
+            },
+          ),
+        ],
+        elevation: 0,
+      ),
       body: Stack(
         children: <Widget>[
           Observer(
@@ -31,6 +53,8 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Modular.to.pushNamed('/edit-task');
                   },
+                  borderColor:
+                      appController.isDark ? Colors.white : Colors.black,
                   titulo: homeController.listTask[index].titulo,
                   descricao: homeController.listTask[index].descricao,
                 );
@@ -51,30 +75,29 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Widget _getAppBar(appController) {
-  return AppBar(
-    iconTheme: IconThemeData(color: Colors.black),
-    title: Text(
-      "Tasks",
-      style: TextStyle(
-        color: Colors.black,
-      ),
-    ),
-    actions: <Widget>[
-      Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Observer(builder: (_) {
-          return appController.isDark
-              ? IconButton(
-                  onPressed: () => appController.setDarkMode(false),
-                  icon: Icon(Icons.brightness_5))
-              : IconButton(
-                  onPressed: () => appController.setDarkMode(true),
-                  icon: Icon(Icons.brightness_2));
-        }),
-      )
-    ],
-    backgroundColor: Contants.backgroudColor,
-    elevation: 0,
-  );
-}
+// Widget _getAppBar(appController) {
+//   return AppBar(
+//     iconTheme: IconThemeData(color: Colors.black),
+//     title: Text(
+//       "Tasks",
+//       style: TextStyle(
+//           //color: Colors.black,
+//           ),
+//     ),
+//     actions: <Widget>[
+//       Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Observer(builder: (_) {
+//           return appController.isDark
+//               ? IconButton(
+//                   onPressed: () => appController.changeTheme(),
+//                   icon: Icon(Icons.brightness_5))
+//               : IconButton(
+//                   onPressed: () => appController.changeTheme(),
+//                   icon: Icon(Icons.brightness_2));
+//         }),
+//       )
+//     ],
+//     elevation: 0,
+//   );
+// }

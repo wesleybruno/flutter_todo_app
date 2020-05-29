@@ -4,8 +4,9 @@ class TaskItem extends StatelessWidget {
   final String titulo;
   final String descricao;
   final Function onTap;
+  final Color borderColor;
 
-  const TaskItem({this.titulo, this.descricao, this.onTap});
+  const TaskItem({this.titulo, this.descricao, this.onTap, this.borderColor});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,9 @@ class TaskItem extends StatelessWidget {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            border: Border.all(),
+            border: Border.all(
+              color: borderColor,
+            ),
             borderRadius: BorderRadius.circular(20.0),
           ),
           height: 120,

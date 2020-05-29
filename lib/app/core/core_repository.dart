@@ -7,7 +7,7 @@ class CoreRepository {
     sharedPref = SharedPref();
   }
 
-  Future<bool> findOne(String key) async {
+  Future<String> findOne(String key) async {
     return await sharedPref.read(key);
   }
 

@@ -9,47 +9,32 @@ part of 'app_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AppController on _AppControllerBase, Store {
-  final _$isDarkAtom = Atom(name: '_AppControllerBase.isDark');
+  final _$themeAppAtom = Atom(name: '_AppControllerBase.themeApp');
 
   @override
-  bool get isDark {
-    _$isDarkAtom.reportRead();
-    return super.isDark;
+  ThemeData get themeApp {
+    _$themeAppAtom.reportRead();
+    return super.themeApp;
   }
 
   @override
-  set isDark(bool value) {
-    _$isDarkAtom.reportWrite(value, super.isDark, () {
-      super.isDark = value;
+  set themeApp(ThemeData value) {
+    _$themeAppAtom.reportWrite(value, super.themeApp, () {
+      super.themeApp = value;
     });
   }
 
-  final _$loadDarkModeAsyncAction =
-      AsyncAction('_AppControllerBase.loadDarkMode');
+  final _$loadThemeAsyncAction = AsyncAction('_AppControllerBase.loadTheme');
 
   @override
-  Future<void> loadDarkMode() {
-    return _$loadDarkModeAsyncAction.run(() => super.loadDarkMode());
-  }
-
-  final _$_AppControllerBaseActionController =
-      ActionController(name: '_AppControllerBase');
-
-  @override
-  dynamic setDarkMode(bool value) {
-    final _$actionInfo = _$_AppControllerBaseActionController.startAction(
-        name: '_AppControllerBase.setDarkMode');
-    try {
-      return super.setDarkMode(value);
-    } finally {
-      _$_AppControllerBaseActionController.endAction(_$actionInfo);
-    }
+  Future<void> loadTheme() {
+    return _$loadThemeAsyncAction.run(() => super.loadTheme());
   }
 
   @override
   String toString() {
     return '''
-isDark: ${isDark}
+themeApp: ${themeApp}
     ''';
   }
 }
