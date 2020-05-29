@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../helpers/constants.dart';
-import '../../model/Task.dart';
 import '../home/home_controller.dart';
 import './task_controller.dart';
 import 'widgets/form_task.dart';
@@ -36,8 +35,14 @@ class _NewTaskPageState extends State<NewTaskPage> {
     }
 
     return Scaffold(
-      appBar: _getAppBar(),
-      backgroundColor: Constants.backgroudColor,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        iconTheme: IconThemeData(),
+        title: Text(
+          "New Task",
+        ),
+        elevation: 0,
+      ),
       body: FormTask(
         taskController: _taskController,
         pageViewController: _pageViewController,
@@ -50,22 +55,6 @@ class _NewTaskPageState extends State<NewTaskPage> {
       ),
     );
   }
-}
-
-Widget _getAppBar() {
-  return AppBar(
-    iconTheme: IconThemeData(
-      color: Colors.black,
-    ),
-    title: Text(
-      "New Task",
-      style: TextStyle(
-        color: Colors.black,
-      ),
-    ),
-    backgroundColor: Constants.backgroudColor,
-    elevation: 0,
-  );
 }
 
 Widget _getFloatingActionButton(_taskController, nextPage, initialPage) {

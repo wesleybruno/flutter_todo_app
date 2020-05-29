@@ -49,7 +49,7 @@ Widget _getButtonSalvar(
     padding: EdgeInsets.symmetric(horizontal: 12),
     width: double.infinity,
     child: RaisedButton(
-      color: Theme.of(context).primaryColor,
+      color: Theme.of(context).accentColor,
       onPressed: () {
         Modular.to.pushNamed('/');
         onSubmit(
@@ -64,7 +64,6 @@ Widget _getButtonSalvar(
         "Salvar",
         style: TextStyle(
           fontSize: 20,
-          color: Colors.white,
         ),
       ),
     ),

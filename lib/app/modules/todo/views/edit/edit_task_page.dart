@@ -11,19 +11,12 @@ class _EditTaskPageState extends State<EditTaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           "EditTask",
-          style: TextStyle(
-            color: Colors.black,
-          ),
         ),
-        backgroundColor: Constants.backgroudColor,
         elevation: 0,
       ),
-      backgroundColor: Constants.backgroudColor,
       body: Center(
         child: Container(
           child: Text("Edit Task Page"),
