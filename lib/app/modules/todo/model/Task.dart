@@ -1,9 +1,9 @@
 import '../../../interfaces/model_interface.dart';
-import '../../../interfaces/repository_interface.dart';
+import '../../../interfaces/repository_task_interface.dart';
 import '../repository/task_repository.dart';
 
 class Task implements ModelInterface<Task> {
-  RepositoryInterface repository = TaskRepository();
+  RepositoryTaskInterface repository = TaskRepository();
 
   int _id;
   String _titulo;
@@ -17,7 +17,7 @@ class Task implements ModelInterface<Task> {
   String get titulo => _titulo;
   set titulo(String titulo) => _titulo = titulo;
   bool get isExecutada => _isExecutada;
-  set isExecutada(bool sExecutada) => _isExecutada = _isExecutada;
+  set isExecutada(bool isExecutada) => _isExecutada = _isExecutada;
 
   Task({String titulo, String descricao, bool isExecutada}) {
     this._titulo = titulo;
@@ -29,12 +29,12 @@ class Task implements ModelInterface<Task> {
     return await repository.findOne(taskId);
   }
 
-  Future<void> excluir(int taskId) async {
-    await repository.remove(taskId);
+  Future<void> excluir() async {
+    await repository.remove(id);
   }
 
-  Future<void> finalizar(int taskId, Task task) async {
-    await repository.update(taskId, task);
+  Future<void> finalizar() async {
+    await repository.finalizar(this);
   }
 
   Task.fromJson(Map<String, dynamic> json)
@@ -43,12 +43,16 @@ class Task implements ModelInterface<Task> {
         _isExecutada = json['isExecutada'] == true,
         _id = json['id'];
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'titulo': titulo,
-        'descricao': descricao,
-        'isExecutada': isExecutada,
-      };
+  Map<String, dynamic> toJson() {
+    var data = Map<String, dynamic>();
+
+    data["titulo"] = titulo;
+    data["descricao"] = descricao;
+    data["isExecutada"] = isExecutada;
+    data["id"] = id;
+
+    return data;
+  }
 
   @override
   Future<List<Task>> listAll() async {

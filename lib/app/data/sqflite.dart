@@ -77,11 +77,27 @@ class SqFlite {
     }
   }
 
-  Future<bool> update(String query, List<String> values) async {
+  Future<bool> rawUpdate(String query, List<String> values) async {
     try {
       var conn = await getConnection();
 
       await conn.rawUpdate(query, values);
+
+      conn.close();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> update(String table, Map<String, dynamic> values, String where,
+      List<String> whereArgs) async {
+    try {
+      var conn = await getConnection();
+
+      await conn.update(table, values, where: where, whereArgs: whereArgs);
+
+//      await conn.rawUpdate(query, values);
 
       conn.close();
       return true;

@@ -27,85 +27,92 @@ class _EditTaskPageState extends State<EditTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          title: Text(
-            "Task ${widget.taskId}",
-          ),
-          elevation: 0,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text(
+          "Task ${widget.taskId}",
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            SizedBox(height: MediaQuery.of(context).size.height / 4),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: Observer(builder: (_) {
-                  return Text(
-                    "${editTaskController.taskTitulo}",
-                    style: TextStyle(
-                      fontSize: 32,
+        elevation: 0,
+      ),
+      body: Observer(
+        builder: (_) {
+          return editTaskController.isLoading
+              ? Center( child: CircularProgressIndicator(),)
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    SizedBox(height: MediaQuery.of(context).size.height / 4),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        child: Observer(builder: (_) {
+                          return Text(
+                            "${editTaskController.taskTitulo}",
+                            style: TextStyle(
+                              fontSize: 32,
+                            ),
+                          );
+                        }),
+                      ),
                     ),
-                  );
-                }),
-              ),
-            ),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Observer(builder: (_) {
-                  return Text(
-                    "${editTaskController.taskDescricao}",
-                    style: TextStyle(
-                      fontSize: 32,
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Observer(builder: (_) {
+                          return Text(
+                            "${editTaskController.taskDescricao}",
+                            style: TextStyle(
+                              fontSize: 32,
+                            ),
+                          );
+                        }),
+                      ),
                     ),
-                  );
-                }),
-              ),
-            ),
-            Expanded(child: Container()),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  child: Text(
-                    "Finalizar",
-                    style: TextStyle(
-                      fontSize: 20,
+                    Expanded(child: Container()),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RaisedButton(
+                          color: Theme.of(context).accentColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: Text(
+                            "Finalizar",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          onPressed: () async {
+                            await editTaskController
+                                .finalizarTask(int.tryParse(widget.taskId));
+                            Modular.to.pushNamed('/list-task');
+                          }),
                     ),
-                  ),
-                  onPressed: () async {
-                    await editTaskController
-                        .finalizarTask(int.tryParse(widget.taskId));
-                    Modular.to.pushNamed('/list-task');
-                  }),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  child: Text(
-                    "Excluir",
-                    style: TextStyle(
-                      fontSize: 20,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RaisedButton(
+                          color: Theme.of(context).accentColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: Text(
+                            "Excluir",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          onPressed: () async {
+                            await editTaskController
+                                .excluirTask(int.tryParse(widget.taskId));
+                            Modular.to.pushNamed('/list-task');
+                          }),
                     ),
-                  ),
-                  onPressed: () async {
-                    await editTaskController
-                        .excluirTask(int.tryParse(widget.taskId));
-                    Modular.to.pushNamed('/list-task');
-                  }),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 4)
-          ],
-        ));
+                    SizedBox(height: MediaQuery.of(context).size.height / 4)
+                  ],
+                );
+        },
+      ),
+    );
   }
 }

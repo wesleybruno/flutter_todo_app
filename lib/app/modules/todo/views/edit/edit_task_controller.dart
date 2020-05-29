@@ -14,6 +14,9 @@ abstract class _EditTaskControllerBase with Store {
   @observable
   Task _task;
 
+  @observable
+  bool isLoading = true;
+
   @computed
   String get taskTitulo => _task.titulo;
 
@@ -23,15 +26,18 @@ abstract class _EditTaskControllerBase with Store {
   @action
   Future<void> loadTask(int taskId) async {
     _task = await Task().find(taskId);
+    isLoading = false;
   }
 
   Future<void> finalizarTask(int taskId) async {
-    await Task().finalizar(taskId, _task);
+    var task = await Task().find(taskId);
+    await task.finalizar();
     await homeController.getTaskList();
   }
 
   Future<void> excluirTask(int taskId) async {
-    await Task().excluir(taskId);
+    var task = await Task().find(taskId);
+    await task.excluir();
     await homeController.getTaskList();
   }
 }

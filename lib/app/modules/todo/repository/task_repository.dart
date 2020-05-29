@@ -1,8 +1,9 @@
 import '../../../data/sqflite.dart';
-import '../../../interfaces/repository_interface.dart';
+import '../../../interfaces/repository_task_interface.dart';
+
 import '../model/Task.dart';
 
-class TaskRepository implements RepositoryInterface<Task> {
+class TaskRepository implements RepositoryTaskInterface<Task> {
   List<Task> listTask = [];
 
   SqFlite sqflite;
@@ -60,10 +61,21 @@ class TaskRepository implements RepositoryInterface<Task> {
   }
 
   @override
-  Future<bool> update(int key, Task task) async {
-    var query = "UPDATE Task SET isExecutada = ? where id = ?";
+  Future<bool> update(Task task) async {
+    // var query = "UPDATE Task SET isExecutada = ? where id = ?";
+    // var values = ["${!task.isExecutada}", "${task.id}"];
+
+    var where = "id = ?";
+    var whereArgs = ["${task.id}"];
+
+    return await sqflite.update("Task", task.toJson(), where, whereArgs);
+  }
+
+  @override
+  Future<bool> finalizar(Task task) async {
+    var query = "UPDATE Task SET isExecutada = true where id = ?";
     var values = ["${!task.isExecutada}", "${task.id}"];
 
-    return await sqflite.update(query, values);
+    return await sqflite.rawUpdate(query, values);
   }
 }
