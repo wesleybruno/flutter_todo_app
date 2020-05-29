@@ -15,13 +15,13 @@ class EditTaskPage extends StatefulWidget {
 
 class _EditTaskPageState extends State<EditTaskPage> {
   final HomeController homeController = Modular.get<HomeController>();
-  final EditTaskController editTaskController =
+  EditTaskController editTaskController =
       Modular.get<EditTaskController>();
 
   @override
   void initState() {
-    editTaskController.loadTask(int.tryParse(widget.taskId));
     super.initState();
+    editTaskController.loadTask(int.tryParse(widget.taskId));
   }
 
   @override
@@ -35,83 +35,84 @@ class _EditTaskPageState extends State<EditTaskPage> {
         elevation: 0,
       ),
       body: Observer(
-        builder: (_) {
-          return editTaskController.isLoading
-              ? Center( child: CircularProgressIndicator(),)
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    SizedBox(height: MediaQuery.of(context).size.height / 4),
-                    Padding(
+        builder: (_) => editTaskController.isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  SizedBox(height: MediaQuery.of(context).size.height / 4),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Observer(builder: (_) {
+                        return Text(
+                          "${editTaskController.taskTitulo}",
+                          style: TextStyle(
+                            fontSize: 32,
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        child: Observer(builder: (_) {
-                          return Text(
-                            "${editTaskController.taskTitulo}",
-                            style: TextStyle(
-                              fontSize: 32,
-                            ),
-                          );
+                      child: Observer(builder: (_) {
+                        return Text(
+                          "${editTaskController.taskDescricao}",
+                          style: TextStyle(
+                            fontSize: 32,
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                        color: Theme.of(context).accentColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        child: Text(
+                          "Finalizar",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        onPressed: () async {
+                          await editTaskController
+                              .finalizarTask(int.tryParse(widget.taskId));
+                          Modular.to.pushNamed('/list-task');
                         }),
-                      ),
-                    ),
-                    Container(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Observer(builder: (_) {
-                          return Text(
-                            "${editTaskController.taskDescricao}",
-                            style: TextStyle(
-                              fontSize: 32,
-                            ),
-                          );
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                        color: Theme.of(context).accentColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        child: Text(
+                          "Excluir",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        onPressed: () async {
+                          await editTaskController
+                              .excluirTask(int.tryParse(widget.taskId));
+                          Modular.to.pushNamed('/list-task');
                         }),
-                      ),
-                    ),
-                    Expanded(child: Container()),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                          color: Theme.of(context).accentColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          child: Text(
-                            "Finalizar",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                          onPressed: () async {
-                            await editTaskController
-                                .finalizarTask(int.tryParse(widget.taskId));
-                            Modular.to.pushNamed('/list-task');
-                          }),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                          color: Theme.of(context).accentColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          child: Text(
-                            "Excluir",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                          onPressed: () async {
-                            await editTaskController
-                                .excluirTask(int.tryParse(widget.taskId));
-                            Modular.to.pushNamed('/list-task');
-                          }),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 4)
-                  ],
-                );
-        },
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height / 4)
+                ],
+              ),
+        //},
       ),
     );
   }
