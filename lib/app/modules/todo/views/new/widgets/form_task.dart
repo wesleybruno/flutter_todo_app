@@ -9,53 +9,65 @@ class FormTask extends StatelessWidget {
   final _textTituloController = TextEditingController();
   final _textDescricaoController = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
+
   final Function onSubmit;
 
   FormTask({this.taskController, this.pageViewController, this.onSubmit});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          height: MediaQuery.of(context).size.height / 3,
-          width: double.infinity,
-          child: PageView(
-            controller: pageViewController,
-            physics: NeverScrollableScrollPhysics(),
-            children: <Widget>[
-              _getFirstPage(_textTituloController),
-              _getSecondPage(_textDescricaoController),
-            ],
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height / 3,
+            width: double.infinity,
+            child: PageView(
+              controller: pageViewController,
+              physics: NeverScrollableScrollPhysics(),
+              children: <Widget>[
+                _getFirstPage(_textTituloController),
+                _getSecondPage(_textDescricaoController),
+              ],
+            ),
           ),
-        ),
-        Observer(
-          builder: (_) => Container(
-            height: MediaQuery.of(context).size.height / 15,
-            child: taskController.isInitPage
-                ? Container()
-                : _getButtonSalvar(context, _textTituloController,
-                    _textDescricaoController, onSubmit),
+          Observer(
+            builder: (_) => Container(
+              height: MediaQuery.of(context).size.height / 15,
+              child: taskController.isInitPage
+                  ? Container()
+                  : _getButtonSalvar(context, _textTituloController,
+                      _textDescricaoController, onSubmit, _formKey),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
 
 Widget _getButtonSalvar(
-    context, _textTituloController, _textDescricaoController, onSubmit) {
+  context,
+  _textTituloController,
+  _textDescricaoController,
+  onSubmit,
+  _formKey,
+) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 12),
     width: double.infinity,
     child: RaisedButton(
       color: Theme.of(context).accentColor,
       onPressed: () {
-        Modular.to.pushNamed('/');
-        onSubmit(
-          _textTituloController.text,
-          _textDescricaoController.text,
-        );
+        if (_formKey.currentState.validate()) {
+          Modular.to.pushNamed('/');
+          onSubmit(
+            _textTituloController.text,
+            _textDescricaoController.text,
+          );
+        }
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
@@ -73,7 +85,13 @@ Widget _getButtonSalvar(
 Widget _getFirstPage(_textTituloController) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
-    child: TextField(
+    child: TextFormField(
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Campo obrigatorio';
+        }
+        return null;
+      },
       controller: _textTituloController,
       decoration: InputDecoration(
         border: InputBorder.none,
@@ -92,7 +110,13 @@ Widget _getFirstPage(_textTituloController) {
 Widget _getSecondPage(_textDescricaoController) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
-    child: TextField(
+    child: TextFormField(
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Campo obrigatorio';
+        }
+        return null;
+      },
       controller: _textDescricaoController,
       decoration: InputDecoration(
         border: InputBorder.none,

@@ -15,8 +15,7 @@ class EditTaskPage extends StatefulWidget {
 
 class _EditTaskPageState extends State<EditTaskPage> {
   final HomeController homeController = Modular.get<HomeController>();
-  EditTaskController editTaskController =
-      Modular.get<EditTaskController>();
+  EditTaskController editTaskController = Modular.get<EditTaskController>();
 
   @override
   void initState() {
@@ -71,25 +70,27 @@ class _EditTaskPageState extends State<EditTaskPage> {
                     ),
                   ),
                   Expanded(child: Container()),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                        color: Theme.of(context).accentColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        child: Text(
-                          "Finalizar",
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                        onPressed: () async {
-                          await editTaskController
-                              .finalizarTask(int.tryParse(widget.taskId));
-                          Modular.to.pushNamed('/list-task');
-                        }),
-                  ),
+                  !editTaskController.isFinalizada
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RaisedButton(
+                              color: Theme.of(context).accentColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              child: Text(
+                                "Finalizar",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                              onPressed: () async {
+                                await editTaskController
+                                    .finalizarTask(int.tryParse(widget.taskId));
+                                Modular.to.pushNamed('/list-task');
+                              }),
+                        )
+                      : Container(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: RaisedButton(

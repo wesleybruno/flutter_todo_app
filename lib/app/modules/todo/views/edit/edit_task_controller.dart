@@ -18,6 +18,9 @@ abstract class _EditTaskControllerBase with Store {
   bool isLoading = true;
 
   @computed
+  bool get isFinalizada => _task.isExecutada == "true";
+
+  @computed
   String get taskTitulo => _task.titulo;
 
   @computed
