@@ -51,11 +51,15 @@ class TaskItem extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        status.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
+                      child: status == "true"
+                          ? Icon(
+                              Icons.verified_user,
+                              color: Theme.of(context).accentColor,
+                            )
+                          : Icon(
+                              Icons.announcement,
+                              color: Theme.of(context).accentColor,
+                            ),
                     ),
                   ],
                 ),
