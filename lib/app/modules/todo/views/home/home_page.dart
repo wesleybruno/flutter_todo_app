@@ -60,8 +60,7 @@ class _HomePageState extends State<HomePage> {
                   borderColor: appController.themeStore.isDark
                       ? Colors.white
                       : Colors.black,
-                  titulo:
-                      "${homeController.listTask[index].id} - ${homeController.listTask[index].titulo}",
+                  titulo: "${homeController.listTask[index].titulo}",
                   status: homeController.listTask[index].isExecutada,
                   descricao: homeController.listTask[index].descricao,
                 );

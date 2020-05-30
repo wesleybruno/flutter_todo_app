@@ -43,7 +43,7 @@ class TaskRepository implements RepositoryTaskInterface<Task> {
     var whereArgs = ["0"];
 
     var lista = await sqflite.read(table, columns, where, whereArgs);
-    List<Task> returnLit = [];
+    var returnLit = <Task>[];
 
     for (var item in lista) {
       returnLit.add(Task.fromJson(item));

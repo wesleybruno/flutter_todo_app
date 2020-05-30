@@ -20,9 +20,9 @@ class Task implements ModelInterface<Task> {
   set isExecutada(String isExecutada) => _isExecutada = _isExecutada;
 
   Task({String titulo, String descricao, String isExecutada}) {
-    this._titulo = titulo;
-    this._descricao = descricao;
-    this._isExecutada = isExecutada;
+    _titulo = titulo;
+    _descricao = descricao;
+    _isExecutada = isExecutada;
   }
 
   Future<Task> find(int taskId) async {

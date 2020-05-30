@@ -28,22 +28,18 @@ class SqFlite {
     String where,
     List<String> whereArgs,
   ) async {
-    try {
-      var conn = await getConnection();
+    var conn = await getConnection();
 
-      var rs = await conn.query(
-        "$table",
-        columns: columns,
-        where: where,
-        whereArgs: whereArgs,
-      );
+    var rs = await conn.query(
+      "$table",
+      columns: columns,
+      where: where,
+      whereArgs: whereArgs,
+    );
 
-      conn.close();
+    conn.close();
 
-      return rs;
-    } catch (e) {
-      //debugPrint(e.message);
-    }
+    return rs;
   }
 
   Future<bool> insert(String insertString, List<String> insertValues) async {

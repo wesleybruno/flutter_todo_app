@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'core/core_repository.dart';
-
+import 'package:flutter/material.dart';
 import 'app_controller.dart';
 import 'app_widget.dart';
+import 'core/core_repository.dart';
 import 'modules/todo/todo_module.dart';
 import 'service/theme_service.dart';
 

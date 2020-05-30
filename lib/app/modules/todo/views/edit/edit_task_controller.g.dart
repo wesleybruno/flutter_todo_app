@@ -61,12 +61,4 @@ mixin _$EditTaskController on _EditTaskControllerBase, Store {
     return _$loadTaskAsyncAction.run(() => super.loadTask(taskId));
   }
 
-  @override
-  String toString() {
-    return '''
-isLoading: ${isLoading},
-taskTitulo: ${taskTitulo},
-taskDescricao: ${taskDescricao}
-    ''';
-  }
 }
