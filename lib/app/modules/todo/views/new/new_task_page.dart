@@ -12,7 +12,7 @@ class NewTaskPage extends StatefulWidget {
 class _NewTaskPageState extends State<NewTaskPage> {
   final NewTaskController _taskController = Modular.get<NewTaskController>();
   final PageController _pageViewController = PageController(initialPage: 0);
-
+  final formKey = GlobalKey<FormState>();
   @override
   void dispose() {
     _taskController.initPageTrue();
@@ -49,20 +49,29 @@ class _NewTaskPageState extends State<NewTaskPage> {
         taskController: _taskController,
         pageViewController: _pageViewController,
         onSubmit: saveTask,
+        formKey: formKey,
       ),
       floatingActionButton: _getFloatingActionButton(
-        _taskController,
-        nextPage,
-        initialPage,
-      ),
+          _taskController, nextPage, initialPage, formKey),
     );
   }
 }
 
-Widget _getFloatingActionButton(_taskController, nextPage, initialPage) {
+Widget _getFloatingActionButton(
+  _taskController,
+  nextPage,
+  initialPage,
+  formKey,
+) {
   return FloatingActionButton(
     onPressed: () {
-      _taskController.isInitPage ? nextPage() : initialPage();
+      if (_taskController.isInitPage && formKey.currentState.validate()) {
+        return nextPage();
+      }
+
+      if (!_taskController.isInitPage) {
+        return initialPage();
+      }
     },
     child: Observer(
       builder: (_) => Icon(

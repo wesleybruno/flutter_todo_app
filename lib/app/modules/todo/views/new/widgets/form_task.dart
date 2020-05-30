@@ -9,16 +9,22 @@ class FormTask extends StatelessWidget {
   final _textTituloController = TextEditingController();
   final _textDescricaoController = TextEditingController();
 
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey;
+  //final formKey = GlobalKey<FormState>();
 
   final Function onSubmit;
 
-  FormTask({this.taskController, this.pageViewController, this.onSubmit});
+  FormTask({
+    this.taskController,
+    this.pageViewController,
+    this.onSubmit,
+    this.formKey,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         children: <Widget>[
           Container(
@@ -38,8 +44,13 @@ class FormTask extends StatelessWidget {
               height: MediaQuery.of(context).size.height / 15,
               child: taskController.isInitPage
                   ? Container()
-                  : _getButtonSalvar(context, _textTituloController,
-                      _textDescricaoController, onSubmit, _formKey),
+                  : _getButtonSalvar(
+                      context,
+                      _textTituloController,
+                      _textDescricaoController,
+                      onSubmit,
+                      formKey,
+                    ),
             ),
           ),
         ],
@@ -53,7 +64,7 @@ Widget _getButtonSalvar(
   _textTituloController,
   _textDescricaoController,
   onSubmit,
-  _formKey,
+  formKey,
 ) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 12),
@@ -61,7 +72,7 @@ Widget _getButtonSalvar(
     child: RaisedButton(
       color: Theme.of(context).accentColor,
       onPressed: () {
-        if (_formKey.currentState.validate()) {
+        if (formKey.currentState.validate()) {
           Modular.to.pushNamed('/');
           onSubmit(
             _textTituloController.text,
