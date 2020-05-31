@@ -19,6 +19,7 @@ A basic app
 * flutter pub run build_runner build --delete-conflicting-outputs
 * flutter pub run build_runner watch
 * flutter pub packages pub run flutter_launcer_icons:main
+* flutter run --release
 
 ## Screenshots
 
