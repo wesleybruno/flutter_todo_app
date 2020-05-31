@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
-          "Tasks",
+          "Tarefas",
           style: TextStyle(
               //color: Colors.black,
               ),

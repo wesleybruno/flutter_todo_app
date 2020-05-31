@@ -41,7 +41,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         iconTheme: IconThemeData(),
         title: Text(
-          "New Task",
+          "Nova Tarefa",
         ),
         elevation: 0,
       ),

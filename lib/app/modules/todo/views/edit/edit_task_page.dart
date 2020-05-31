@@ -29,7 +29,7 @@ class _EditTaskPageState extends State<EditTaskPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
-          "Task ${widget.taskId}",
+          "Tarefa",
         ),
         elevation: 0,
       ),
