@@ -25,11 +25,5 @@ A basic app
 
 ## Screenshots
 
-![02](https://raw.githubusercontent.com/wesleybruno/flutter_todo_app/master/assets/02.png)
-
-![03](https://raw.githubusercontent.com/wesleybruno/flutter_todo_app/master/assets/03.png)
-
-![04](https://raw.githubusercontent.com/wesleybruno/flutter_todo_app/master/assets/04.png)
-
-![01](https://raw.githubusercontent.com/wesleybruno/flutter_todo_app/master/assets/01.png)
+![01](https://raw.githubusercontent.com/wesleybruno/flutter_todo_app/master/assets/01.mp4)
 
