@@ -97,8 +97,9 @@ Widget _getFirstPage(_textTituloController) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: TextFormField(
+      autofocus: true,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value.trim().isEmpty) {
           return 'Campo obrigatorio';
         }
         return null;
@@ -122,8 +123,9 @@ Widget _getSecondPage(_textDescricaoController) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: TextFormField(
+      autofocus: true,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value.trim().isEmpty) {
           return 'Campo obrigatorio';
         }
         return null;
