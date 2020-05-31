@@ -73,7 +73,7 @@ Widget _getButtonSalvar(
       color: Theme.of(context).accentColor,
       onPressed: () {
         if (formKey.currentState.validate()) {
-          Modular.to.pushNamed('/');
+          Modular.to.pop();
           onSubmit(
             _textTituloController.text,
             _textDescricaoController.text,

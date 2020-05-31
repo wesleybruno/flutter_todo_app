@@ -85,9 +85,10 @@ class _EditTaskPageState extends State<EditTaskPage> {
                                 ),
                               ),
                               onPressed: () async {
-                                await editTaskController
-                                    .finalizarTask(int.tryParse(widget.taskId));
-                                Modular.to.pushNamed('/list-task');
+                                await editTaskController.finalizarTask(
+                                  int.tryParse(widget.taskId),
+                                );
+                                Modular.to.pop();
                               }),
                         )
                       : Container(),
@@ -105,9 +106,10 @@ class _EditTaskPageState extends State<EditTaskPage> {
                           ),
                         ),
                         onPressed: () async {
-                          await editTaskController
-                              .excluirTask(int.tryParse(widget.taskId));
-                          Modular.to.pushNamed('/list-task');
+                          await editTaskController.excluirTask(
+                            int.tryParse(widget.taskId),
+                          );
+                          Modular.to.pop();
                         }),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 4)
