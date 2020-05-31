@@ -20,6 +20,8 @@ A basic app
 * flutter pub run build_runner watch
 * flutter pub packages pub run flutter_launcer_icons:main
 * flutter run --release
+* flutter build appbundle
+* flutter build apk --split-per-abi
 
 ## Screenshots
 
