@@ -24,8 +24,46 @@ mixin _$NewTaskController on _NewTaskControllerBase, Store {
     });
   }
 
+  final _$tituloIsValidAtom =
+      Atom(name: '_NewTaskControllerBase.tituloIsValid');
+
+  @override
+  bool get tituloIsValid {
+    _$tituloIsValidAtom.reportRead();
+    return super.tituloIsValid;
+  }
+
+  @override
+  set tituloIsValid(bool value) {
+    _$tituloIsValidAtom.reportWrite(value, super.tituloIsValid, () {
+      super.tituloIsValid = value;
+    });
+  }
+
   final _$_NewTaskControllerBaseActionController =
       ActionController(name: '_NewTaskControllerBase');
+
+  @override
+  void setTituloFalse() {
+    final _$actionInfo = _$_NewTaskControllerBaseActionController.startAction(
+        name: '_NewTaskControllerBase.setTituloFalse');
+    try {
+      return super.setTituloFalse();
+    } finally {
+      _$_NewTaskControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setTituloTrue() {
+    final _$actionInfo = _$_NewTaskControllerBaseActionController.startAction(
+        name: '_NewTaskControllerBase.setTituloTrue');
+    try {
+      return super.setTituloTrue();
+    } finally {
+      _$_NewTaskControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   bool initPageFalse() {
@@ -52,7 +90,8 @@ mixin _$NewTaskController on _NewTaskControllerBase, Store {
   @override
   String toString() {
     return '''
-isInitPage: ${isInitPage}
+isInitPage: ${isInitPage},
+tituloIsValid: ${tituloIsValid}
     ''';
   }
 }

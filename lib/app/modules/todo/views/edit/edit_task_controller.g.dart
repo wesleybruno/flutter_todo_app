@@ -9,6 +9,13 @@ part of 'edit_task_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$EditTaskController on _EditTaskControllerBase, Store {
+  Computed<bool> _$isFinalizadaComputed;
+
+  @override
+  bool get isFinalizada =>
+      (_$isFinalizadaComputed ??= Computed<bool>(() => super.isFinalizada,
+              name: '_EditTaskControllerBase.isFinalizada'))
+          .value;
   Computed<String> _$taskTituloComputed;
 
   @override
@@ -61,4 +68,13 @@ mixin _$EditTaskController on _EditTaskControllerBase, Store {
     return _$loadTaskAsyncAction.run(() => super.loadTask(taskId));
   }
 
+  @override
+  String toString() {
+    return '''
+isLoading: ${isLoading},
+isFinalizada: ${isFinalizada},
+taskTitulo: ${taskTitulo},
+taskDescricao: ${taskDescricao}
+    ''';
+  }
 }

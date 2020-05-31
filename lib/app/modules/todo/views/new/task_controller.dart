@@ -11,6 +11,15 @@ abstract class _NewTaskControllerBase with Store {
 
   @observable
   bool isInitPage = true;
+  
+  @observable
+  bool tituloIsValid = true;
+
+  @action
+  void setTituloFalse() => tituloIsValid = false;
+
+  @action
+  void setTituloTrue() => tituloIsValid = true;
 
   @action
   bool initPageFalse() => isInitPage = false;

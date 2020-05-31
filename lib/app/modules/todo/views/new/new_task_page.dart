@@ -12,10 +12,12 @@ class NewTaskPage extends StatefulWidget {
 class _NewTaskPageState extends State<NewTaskPage> {
   final NewTaskController _taskController = Modular.get<NewTaskController>();
   final PageController _pageViewController = PageController(initialPage: 0);
-  final formKey = GlobalKey<FormState>();
+  final GlobalKey formKey = GlobalKey<FormState>();
+
   @override
   void dispose() {
     _taskController.initPageTrue();
+    _pageViewController.dispose();
     super.dispose();
   }
 
@@ -45,40 +47,16 @@ class _NewTaskPageState extends State<NewTaskPage> {
         ),
         elevation: 0,
       ),
-      body: FormTask(
-        taskController: _taskController,
-        pageViewController: _pageViewController,
-        onSubmit: saveTask,
-        formKey: formKey,
+      body: SingleChildScrollView(
+        child: FormTask(
+          taskController: _taskController,
+          pageViewController: _pageViewController,
+          onSubmit: saveTask,
+          formKey: formKey,
+          nextPage: nextPage,
+          initialPage: initialPage,
+        ),
       ),
-      floatingActionButton: _getFloatingActionButton(
-          _taskController, nextPage, initialPage, formKey),
     );
   }
-}
-
-Widget _getFloatingActionButton(
-  _taskController,
-  nextPage,
-  initialPage,
-  formKey,
-) {
-  return FloatingActionButton(
-    onPressed: () {
-      if (_taskController.isInitPage && formKey.currentState.validate()) {
-        return nextPage();
-      }
-
-      if (!_taskController.isInitPage) {
-        return initialPage();
-      }
-    },
-    child: Observer(
-      builder: (_) => Icon(
-        _taskController.isInitPage
-            ? Icons.arrow_forward_ios
-            : Icons.arrow_back_ios,
-      ),
-    ),
-  );
 }
